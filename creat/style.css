@@ -99,7 +99,14 @@ button:focus-visible {
 #box{
   height: 500px;
   width: 500px;
-  background-color: blue;
+  background-color: wheat;
   justify-content: space-around;
 }
 
+p{
+  font-size: 50px;
+}
+#box1{
+  height: 150px;
+  width: 150px;
+}
