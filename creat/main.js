@@ -1,6 +1,7 @@
 import './style.css'
 let answer = []
 let theWord1 = ""
+let missed = []
 document.querySelector('#app').innerHTML = `
 
 
@@ -25,6 +26,7 @@ let Domselectors = {
   hardmode:document.querySelector("#hard"),
   theirguess:document.querySelector("#input"),
   theirguessbutton:document.querySelector("#theirguessbutton"),
+  box:document.querySelector("#box")
 
 }
 
@@ -43,6 +45,7 @@ let Domselectors = {
 
 
 Domselectors.easymode.addEventListener("click",async function(){
+  answer.pop()
   URL =  `https://random-word-api.herokuapp.com/word?length=5`
   let fetching = await fetch(URL);
   let RealUrl = await fetching.json();
@@ -55,6 +58,7 @@ Domselectors.easymode.addEventListener("click",async function(){
 })
 
 Domselectors.mediummode.addEventListener("click", async function(){
+  answer.pop()
   URL = `https://random-word-api.herokuapp.com/word?length=7`
   let fetching = await fetch(URL);
   let RealUrl = await fetching.json();
@@ -63,6 +67,7 @@ Domselectors.mediummode.addEventListener("click", async function(){
 })
 
 Domselectors.hardmode.addEventListener("click",async function(){
+  answer.pop()
   URL = `https://random-word-api.herokuapp.com/word?length=15`
   let fetching = await fetch(URL);
   let RealUrl = await fetching.json();
@@ -77,11 +82,18 @@ Domselectors.theirguessbutton.addEventListener("click",async function(){
     if (Domselectors.theirguess.value[0]===theWord1[i]){
       answer[i] = Domselectors.theirguess.value[0]
     }
+    if (Domselectors.theirguess.value[0]!=theWord1[i]){
+        if(!missed.includes(Domselectors.theirguess.value)){
+          missed.push(Domselectors.theirguess.value[0])
+        }
+    }
   }
   if(!answer.includes("_")){
+    Domselectors.box.innerHTML+="u win"
     console.log("u win")
   }
-  console.log(answer)
+  //Domselectors.box.innerHTML += answer
+  Domselectors.box.innerHTML += missed
   /* for (let i=0; i<theWord1.length; i++){
     if (Domselectors.theirguess.value[0]===theWord1[i]){
       console.log(Domselectors.theirguess.value[0],theWord1[i])
