@@ -49,6 +49,7 @@ let Domselectors = {
 
 
 Domselectors.easymode.addEventListener("click",async function(){
+  count = 0
   answer.pop()
   URL =  `https://random-word-api.herokuapp.com/word?length=5`
   let fetching = await fetch(URL);
@@ -62,6 +63,7 @@ Domselectors.easymode.addEventListener("click",async function(){
 })
 
 Domselectors.mediummode.addEventListener("click", async function(){
+  count = 0
   answer.pop()
   URL =  `https://random-word-api.herokuapp.com/word?length=7`
   let fetching = await fetch(URL);
@@ -75,6 +77,7 @@ Domselectors.mediummode.addEventListener("click", async function(){
 })
 
 Domselectors.hardmode.addEventListener("click",async function(){
+  count = 0
   answer.pop()
   URL =  `https://random-word-api.herokuapp.com/word?length=15`
   let fetching = await fetch(URL);
