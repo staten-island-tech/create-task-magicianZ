@@ -1,6 +1,6 @@
 import './style.css'
 let answer = []
-let theWord1 = "ryan"
+let theWord1 = "ryanx"
 let missed = []
 let count = 0
 document.querySelector('#app').innerHTML = `
