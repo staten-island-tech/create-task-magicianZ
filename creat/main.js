@@ -1,7 +1,6 @@
 import './style.css'
 let answer = []
-let theWord1 = "ryanx"
-let missed = []
+let theWord1 = ""
 let count = 0
 document.querySelector('#app').innerHTML = `
 
@@ -19,10 +18,7 @@ document.querySelector('#app').innerHTML = `
   <div id="box"></div>
   <div id="box1"></div>
 `
-
 let URL = `https://random-word-api.herokuapp.com/word`
-
-
 let Domselectors = {
   easymode:document.querySelector("#easy"),
   mediummode:document.querySelector("#medium"),
@@ -33,25 +29,10 @@ let Domselectors = {
   box1:document.querySelector("#box1")
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Domselectors.easymode.addEventListener("click",async function(){
+async function difficulty(difficulty1){
   count = 0
   answer.pop()
-  URL =  `https://random-word-api.herokuapp.com/word?length=5`
+  URL =  `https://random-word-api.herokuapp.com/word?length=${difficulty1}`
   let fetching = await fetch(URL);
   let RealUrl = await fetching.json();
   let theWord = RealUrl.forEach((something)=> theWord1 = something)
@@ -59,40 +40,20 @@ Domselectors.easymode.addEventListener("click",async function(){
   for (let i = 0; i < theWord1.length; i++){
     answer[i] = "_"
   }
+}
+Domselectors.easymode.addEventListener("click",async function(){
+  difficulty(5)
 
 })
-
 Domselectors.mediummode.addEventListener("click", async function(){
-  count = 0
-  answer.pop()
-  URL =  `https://random-word-api.herokuapp.com/word?length=7`
-  let fetching = await fetch(URL);
-  let RealUrl = await fetching.json();
-  let theWord = RealUrl.forEach((something)=> theWord1 = something)
-  console.log(theWord1)
-  for (let i = 0; i < theWord1.length; i++){
-    answer[i] = "_"
-  }
+  difficulty(8)
  
 })
-
 Domselectors.hardmode.addEventListener("click",async function(){
-  count = 0
-  answer.pop()
-  URL =  `https://random-word-api.herokuapp.com/word?length=15`
-  let fetching = await fetch(URL);
-  let RealUrl = await fetching.json();
-  let theWord = RealUrl.forEach((something)=> theWord1 = something)
-  console.log(theWord1)
-  for (let i = 0; i < theWord1.length; i++){
-    answer[i] = "_"
-  }
+  difficulty(15)
 })
-
 Domselectors.theirguessbutton.addEventListener("click",async function(){
   count++
-
-
   for (let i = 0; i <theWord1.length; i++){
     if (Domselectors.theirguess.value[0]===theWord1[i]){
       answer[i] = Domselectors.theirguess.value[0]
@@ -102,20 +63,8 @@ Domselectors.theirguessbutton.addEventListener("click",async function(){
     Domselectors.box1.innerHTML=`u win and you took ${count} tries`
     console.log("u win")
   }
-  //Domselectors.box.innerHTML += answer
-  console.log(answer)
   console.log(theWord1)
-
   Domselectors.box.innerHTML = answer
-  /* for (let i=0; i<theWord1.length; i++){
-    if (Domselectors.theirguess.value[0]===theWord1[i]){
-      console.log(Domselectors.theirguess.value[0],theWord1[i])
-    }
-
-  } */
-  
-
-
   }
 )
 
