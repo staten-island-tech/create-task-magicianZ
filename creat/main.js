@@ -5,7 +5,6 @@ let count = 0
 document.querySelector('#app').innerHTML = `
 
   <h1> hangman </h1>
-  <h3> only use lower case and pick a mode before u play </h3>
   <button id="easy"> Easy Mode </button>
   <button id="medium"> Medium Mode </button>
   <button id="hard"> Hard Mode </button>
